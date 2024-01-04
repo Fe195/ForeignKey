@@ -1,0 +1,44 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body
+    {
+   background-image: url('{% static "images/p4.jpg" %}');
+    }
+
+        
+     </style>
+<div class="container">
+    <center>
+        <h2 class="mt-5">Students Details</h2>
+    </center>
+    <table class="table table-bordered table-sm mt-5">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Student Address</th>
+                <th>Age</th>
+                <th>Date of Joining</th>
+                <th>Course</th>
+                <th>Fee</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in stud %}
+            <tr>
+                <td>{{s.student_name}}</td>
+                <td>{{s.student_address}}</td>
+                <td>{{s.student_age}}</td>
+                <td>{{s.joining_date}}</td>
+                <td>{{s.course.course_name}}</td>
+                <td>{{s.course.fee}}</td>
+                <td><a href="{% url 'edit' s.id %}">Edit</a></td>
+                <td><a href="{% url 'delete' s.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

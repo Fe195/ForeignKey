@@ -1,0 +1,29 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+    <style>
+        body
+        {
+       background-image: url('{% static "images/image2.jpg" %}');
+        }
+
+
+    h3 {
+        text-align: center;
+        margin-top: 20%;
+        color: rgb(86, 3, 86);
+    }
+</style>
+<div class="container">
+<div class="content">
+    <h3>ADD COURSE</h3>
+    <center>
+    <form action="{% url 'saveCourse' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter Course Name" name="c_name"><br><br>
+        <input type="text" placeholder="Enter Course Fee" name="c_fee"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    </center>
+</div>
+{% endblock %}

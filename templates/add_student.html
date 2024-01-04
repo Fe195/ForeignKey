@@ -1,0 +1,44 @@
+{% extends 'nav.html' %}
+{% block content %}
+
+    {% load static %}
+    <style>
+        body
+        {
+       background-image: url('{% static "images/image1.jpg" %}');
+        }
+
+        
+     
+
+    h3 {
+        text-align: center;
+        color: rgb(86, 3, 86);
+    }
+    
+
+    
+</style>
+<div class="container">
+<div class="content"><br><br><br><br>
+    <h3><center>ADD STUDENT</center></h3>
+    <center>
+    <form action="{% url 'saveStudent' %}" method="post">
+        {% csrf_token %}
+        
+        <input type="text" placeholder="Enter Name" name="s_name"><br><br>
+        <input type="text" placeholder="Address" name="s_add"><br><br>
+        <input type="number" placeholder="Age" name="s_age"><br><br>
+        <input type="date" name="jod"><br><br>
+        <select name="course" id=""><br><br>
+            <option selected disabled>Select Course</option><br><br>
+            {% for c in course %}
+            <option value="{{c.id}}">{{c.course_name}}</option><br><br>
+            {% endfor %}
+        </select><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    </center>
+</div>
+</div>
+{% endblock %}

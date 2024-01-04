@@ -1,0 +1,36 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body
+    {
+   background-image: url('{% static "images/p1.jpg" %}');
+    }
+
+    h3 {
+        text-align: center;
+        color: rgb(86, 3, 86);
+    }
+</style>
+<div class="container">
+<div class="content"><br><br><br><br>
+    <h3>EDIT STUDENT</h3>
+    <center>
+    <form action="{% url 'updateStudent' stud.id %}" method="post"><br><br>
+        {% csrf_token %}
+        <input type="text" name="s_name" value="{{stud.student_name}}"><br><br>
+        <input type="text" value="{{stud.student_address}}" name="s_add"><br><br>
+        <input type="number" value="{{stud.student_age}}" name="s_age"><br><br>
+        <input type="date" name="jod" value="{{stud.joining_date|date:'Y-m-d'}}"><br><br>
+        <select name="course" id=""><br><br>
+            <option selected disabled>{{stud.course.course_name}}</option><br><br>
+            {% for c in course %}
+            <option value="{{c.id}}">{{c.course_name}}</option><br><br>
+            {% endfor %}
+        </select><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</div>
+</center>
+{% endblock %}
